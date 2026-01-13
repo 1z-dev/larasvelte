@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
+use App\Http\Controllers\AfsprakenController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -16,9 +17,10 @@ Route::get('dashboard', function () {
 
 require __DIR__ . '/settings.php';
 
-Route::get('/afspraken', [SessionController::class, 'index']);
-Route::post('/afspraken', [SessionController::class, 'store']);
-Route::get('/afspraken/[id]', [SessionController::class, 'show']);
-Route::patch('/afspraken/[id]', [SessionController::class, 'update']);
-Route::delete('/afspraken/[id]', [SessionController::class, 'delete']);
+Route::get('/afspraken', [AfsprakenController::class, 'index']);
+Route::get('/maak-afspraak', [AfsprakenController::class, 'create']);
+Route::post('/afspraken', [AfsprakenController::class, 'store']);
+Route::get('/afspraken/{id}', [AfsprakenController::class, 'show']);
+Route::patch('/afspraken/{id}', [AfsprakenController::class, 'update']);
+Route::delete('/afspraken/{id}', [AfsprakenController::class, 'destroy']);
 Route::post('/login', [SessionController::class, 'store']);
